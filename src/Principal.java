@@ -1,31 +1,60 @@
-import java.util.Scanner;
+public class Conta {
 
-public class Principal {
+//o conceito de conta
 
-    public static void main(String[] args) {
-        Conta conta1 = new Conta();
-        conta1.depositar(1000);
-        conta1.setNumero("12345");
-        conta1.setAgencia(123);
+    //atributos
+    private int agencia;
+    private String numero;
+    private double saldo;
 
-        Scanner leitor = new Scanner(System.in);
-        System.out.println("Digite o valor a sacar:");
-        double valor = Double.parseDouble(leitor.nextLine());
+    private String titular;
 
-        boolean sacou = conta1.sacar(valor);
-        if (sacou) {
-            System.out.println("Saque realizado com sucesso!");
-        } else {
-            System.out.println("Saldo insuficiente!");
+
+    //métodos
+    public boolean sacar(double valor) {
+        if (valor <= 0) {
+            return false;
         }
 
-        System.out.println("Novo saldo: " + conta1.getSaldo());
-        System.out.println("Agencia: " + conta1.getAgencia());
-        System.out.println("Numero: " + conta1.getSaldo());
+        if (saldo >= valor) {
+            saldo -= valor;
+            return true;
+        }
+        return false;
+    }
 
+    public void depositar(double valor) {
+        if (valor <= 0) {
+            return;
+        }
+        saldo += valor;
+    }
 
+    public int getAgencia() {
+        return agencia;
+    }
 
+    public void setAgencia(int agencia) {
+        this.agencia = agencia;
+    }
 
+    public String getNumero() {
+        return numero;
+    }
 
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public String getTitular() {
+        return titular;
+    }
+
+    public void setTitular(String titular) {
+        this.titular = titular;
     }
 }
